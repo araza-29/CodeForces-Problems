@@ -1,18 +1,17 @@
 #include<iostream>
+#include<map>
 using namespace std;
 int main() {
     int t,n,m;
     bool flag;
-    char map[26];
-    int* cMap;
+    map<char,int> mInt;
+    map<int,char> mChar;
     int* ar;
     string* str;
     cin >> t;
     while(t>0) {
         cin >> n;
-        return 0;
         ar = new int[n];
-        cMap = new int[26];
         for(int i=0;i<n;i++) {
             cin >> ar[i];
         }
@@ -21,26 +20,22 @@ int main() {
         for(int i=0;i<m;i++) {
             cin >> str[i];
         }
-        for(int i=0;i<26;i++) {
-            map[i] = ' ';
-            cMap[i] = 0;
-        }
         for(int j=0;j<m;j++){
             flag = true;
             if(n == str[j].length()){
                 for(int i=0;i<n;i++) {
-                    if(cMap[str[j][i]%97]==0 && map[((ar[i] % 10) + 10) % 10] == ' ') {
-                        cMap[str[j][i]%97] = ar[i];
-                        map[((ar[i] % 10) + 10) % 10] = str[j][i];
+                    if(mInt.count(str[j][i]) == 0 && mChar.count(ar[i]) == 0) {
+                        mInt[str[j][i]] = ar[i];
+                        mChar[ar[i]] = str[j][i];
                     }
-                    else if(cMap[str[j][i]%97] == ar[i] && map[((ar[i] % 10) + 10) % 10] == str[j][i]){
+                    else if(mInt[str[j][i]] == ar[i] && mChar[ar[i]] == str[j][i]){
                         continue;
                     }
                     else {
                         flag = false;
                         break;
                     }
-                    }
+                }
                 if(flag == false){
                         cout << "NO" << endl;
                 }
@@ -51,6 +46,8 @@ int main() {
             else {
                 cout << "NO" << endl;
             }
+            mInt.clear();
+            mChar.clear();
         }
         t--;
     }
