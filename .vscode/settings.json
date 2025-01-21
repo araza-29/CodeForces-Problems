@@ -3,6 +3,10 @@
         "*.embeddedhtml": "html",
         "iostream": "cpp",
         "xstring": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "format": "cpp",
+        "vector": "cpp",
+        "map": "cpp",
+        "algorithm": "cpp"
     }
 }
